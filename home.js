@@ -126,4 +126,14 @@ function myPush(arr, elementToAdd) {
   return arr.length;
 }
 
+// == Everything == // 
+
+function every(array, test) {
+  for (let i = 0; i < array.length; i++) {
+    if (!test(array[i])) {
+      return false; // If one test fails, stop and return false
+    }
+  }
+  return true; // If all pass, return true
+} 
 
