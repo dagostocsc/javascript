@@ -78,3 +78,52 @@ function myEvery(arr, callback) {
 
 console.log("myEvery: ");
 console.log(myEvery(everynums, (num) => num % 3 === 0));
+
+
+// == Reduce == //
+
+function myReduce(arr, callback, initialVal) {
+  if (arr.length === 0 && initialVal === undefined) {
+    throw new Error("Cannot reduce an empty array without an initial value");
+  }
+
+  let accumulator = initialVal !== undefined ? initialVal : arr[0];
+  let startIndex = initialVal !== undefined ? 0 : 1;
+
+  for (let i = startIndex; i < arr.length; i++) {
+    accumulator = callback(accumulator, arr[i], i, arr);
+  }
+
+  return accumulator;
+}
+
+// == myIncludes == //
+
+function myIncludes(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// == myIndexOf == //
+
+function myIndexOf(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+// == myPush == //
+
+function myPush(arr, elementToAdd) {
+  arr[arr.length] = elementToAdd;
+  return arr.length;
+}
+
+
