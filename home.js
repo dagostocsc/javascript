@@ -305,3 +305,31 @@ function reverseArrayInPlace(array) {
   return array;
 }
 
+// == Deep Comparison == //
+
+function deepEqual(x, y) {
+  if (x === y) return true;
+
+  if (typeof x !== "object" || x === null ||
+      typeof y !== "object" || y === null) {
+    return false;
+  }
+
+  let keysX = Object.keys(x);
+  let keysY = Object.keys(y);
+
+  if (keysX.length !== keysY.length) return false;
+
+  for (let key of keysX) {
+    if (!keysY.includes(key) || !deepEqual(x[key], y[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+let obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+console.log(deepEqual(obj, {here: 1, object: 2}));
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
