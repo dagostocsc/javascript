@@ -27,7 +27,7 @@ function myMap(arr, callback)
     return result;
 };
 
-console.log("myMap: ");
+console.log("\nmyMap: ");
 console.log(myMap(arr1, (num)=>{return num ** 2}));
 
 // ==== filter() ==== //
@@ -44,7 +44,7 @@ function myFilter(arr, callback) {
   return result;
 }
 
-console.log("myfilter: ");
+console.log("\nmyfilter: ");
 console.log(myFilter(filternums, (num) => num % 2 === 0));
 
 // ==== some() ==== //
@@ -60,7 +60,7 @@ function mySome(arr, callback) {
   return false;
 }
 
-console.log("mySome: ");
+console.log("\nmySome: ");
 console.log(mySome(somenums, (num) => num > 5));
 
 // ==== every() ==== //
@@ -76,11 +76,13 @@ function myEvery(arr, callback) {
   return true;
 }
 
-console.log("myEvery: ");
+console.log("\nmyEvery: ");
 console.log(myEvery(everynums, (num) => num % 3 === 0));
 
 
-// == Reduce == //
+// ==== reduce() ==== //
+
+const reducenums = [1, 2, 3, 4, 5];
 
 function myReduce(arr, callback, initialVal) {
   if (arr.length === 0 && initialVal === undefined) {
@@ -97,7 +99,14 @@ function myReduce(arr, callback, initialVal) {
   return accumulator;
 }
 
-// == myIncludes == //
+console.log("\nmyReduce: ");
+console.log(myReduce(reducenums, (acc, val) => acc * val)); 
+
+
+
+// ==== includes() ==== //
+
+const fruits = ['apple', 'banana', 'orange'];
 
 function myIncludes(arr, target) {
   for (let i = 0; i < arr.length; i++) {
@@ -108,7 +117,13 @@ function myIncludes(arr, target) {
   return false;
 }
 
-// == myIndexOf == //
+console.log("\nmyIncludes: ")
+console.log(myIncludes(fruits, 'banana'));
+
+
+// ==== indexOf() ==== //
+
+const colors = ['red', 'green', 'blue', 'green'];
 
 function myIndexOf(arr, target) {
   for (let i = 0; i < arr.length; i++) {
@@ -119,23 +134,120 @@ function myIndexOf(arr, target) {
   return -1;
 }
 
-// == myPush == //
+console.log("\nmyIndexOf: ")
+console.log(myIndexOf(colors, 'blue'));
+
+
+// ==== myPush ==== //
+
+const hamsters = ['hamtaro', 'bijou', 'oxnard', 'sandy'];
 
 function myPush(arr, elementToAdd) {
   arr[arr.length] = elementToAdd;
   return arr.length;
 }
 
-// == Everything == // 
+console.log("\nmyPush: ")
+console.log(myPush(hamsters, 'boss'));
+console.log(hamsters); 
 
-function every(array, test) {
-  for (let i = 0; i < array.length; i++) {
-    if (!test(array[i])) {
-      return false; // If one test fails, stop and return false
+// ==== lastIndexOf() ==== //
+
+const felidae = ['lion', 'tiger', 'panther', 'jaguar', 'leopard'];
+
+function myLastIndexOf(arr, target) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] === target) {
+      return i;
     }
   }
-  return true; // If all pass, return true
-} 
+
+  return -1;
+}
+
+console.log("\nmyLastIndexOf: ")
+console.log(myLastIndexOf(felidae, 'tiger'));
+console.log(myLastIndexOf(felidae, 'wolf'));
+
+
+// ==== Objects.keys() ==== //
+
+const student = {
+  name: 'Deborah',
+  age: 22,
+  major: 'Computer Science'
+};
+
+function myObjectKeys(obj) {
+  const keys = [];
+
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      keys.push(key); 
+    }
+  }
+
+  return keys;
+}
+
+console.log("\nmyObjectKeys: ");
+console.log(myObjectKeys(student));
+
+
+// ==== Object.values() ==== //
+
+const car = {
+  make: 'Ford',
+  model: 'Mustang',
+  year: 2005
+};
+
+function myObjectValues(obj) {
+  const values = [];
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      values.push(obj[key]);
+    }
+  }
+  return values;
+}
+
+console.log("\nmyObjectValues: ");
+console.log(myObjectValues(car));
+
+
+// ==== Sum of A Range ==== //
+
+
+function range(start, end, step = 1) {
+  const result = [];
+
+  if (step > 0) {
+    for (let i = start; i <= end; i += step) {
+      result.push(i);
+    }
+  } else {
+    for (let i = start; i >= end; i += step) {
+      result.push(i);
+    }
+  }
+
+  return result;
+}
+
+function sum(numbers) {
+  let total = 0;
+  for (let num of numbers) {
+    total += num;
+  }
+  return total;
+}
+
+console.log("\nSum of a Range: ")
+console.log("\nrange between 2 and 8: " + range(2, 8));
+console.log("\nnumbers between 7 and 4: " + range(7, 4, -1));
+console.log("\nsum of range between 1 and 10: " +sum(range(1, 10)));
+
 
 // == A list == //
 
