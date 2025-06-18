@@ -137,3 +137,59 @@ function every(array, test) {
   return true; // If all pass, return true
 } 
 
+// == A list == //
+
+function arrayToList(array) {
+  let list = null;
+  for (let i = array.length - 1; i >= 0; i--) {
+    list = { value: array[i], rest: list };
+  }
+  return list;
+}
+
+function listToArray(list) {
+  let array = [];
+  let current = list;
+  while (current !== null) {
+    array.push(current.value);
+    current = current.rest;
+  }
+  return array;
+}
+
+function prepend(value, list) {
+  return { value: value, rest: list };
+}
+
+function nth(list, index) {
+  let current = list;
+  let count = 0;
+  while (current !== null) {
+    if (count === index) return current.value;
+    current = current.rest;
+    count++;
+  }
+  return undefined;
+}
+
+// == Reverse Array == //
+
+function reverseArray(array) {
+  let newArray = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+    newArray.push(array[i]);
+  }
+  return newArray;
+}
+
+function reverseArrayInPlace(array) {
+  let half = Math.floor(array.length / 2);
+  for (let i = 0; i < half; i++) {
+    let j = array.length - 1 - i;
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
